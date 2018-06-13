@@ -15,7 +15,7 @@
 #define SPECULAR_EXP 4
 
 //lighting functions
-color get_lighting( double *normal, double *view, color alight, double light[2][3], double *areflect, double *dreflect, double *sreflect);
+color get_lighting( double *normal, double *view, color alight, double light[255][2][3], double *areflect, double *dreflect, double *sreflect, int num_lights);
 color calculate_ambient(color alight, double *areflect );
 color calculate_diffuse(double light[2][3], double *dreflect, double *normal );
 color calculate_specular(double light[2][3], double *sreflect, double *view, double *normal );

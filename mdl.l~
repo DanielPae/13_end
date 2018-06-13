@@ -36,7 +36,6 @@ ID [a-zA-Z][a-zA-Z0-9_]*
 "rotate" {return ROTATE;}
 "basename" {return BASENAME;}
 "save_knobs" {return SAVE_KNOBS;}
-
 "tween" {return TWEEN;}
 "frames" {return FRAMES;}
 "vary" {return VARY;}

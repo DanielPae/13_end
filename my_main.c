@@ -66,12 +66,59 @@
   to some default value, and print out a message
   with the name being used.
   ====================*/
-void first_pass() {
+int first_pass(color ambient, double areflect[3], double sreflect[3], double dreflect [3]) {
   //in order to use name and num_frames throughout
   //they must be extern variables
-  extern int num_frames;
-  extern char name[128];
-
+  SYMTAB *con;
+  int num_lights, i, num_ambient, num_constants;
+  num_lights = 0;
+  num_ambient = 0;
+  num_constants = 0;
+  for(i = 0; i < lastop; i++){
+    switch  (op[i].opcode)
+      {
+      case LIGHT:
+        num_lights++;
+	break;
+      case AMBIENT:
+        ambient.red = op[i].op.ambient.c[0];
+	ambient.green = op[i].op.ambient.c[1];
+	ambient.blue = op[i].op.ambient.c[2];
+	num_ambient++;
+        break;
+      case CONSTANTS:
+	con = lookup_symbol(op[i].op.constants.name);
+	areflect[0] = con->s.c->r[0];
+	areflect[1] = con->s.c->g[0];
+	areflect[2] = con->s.c->b[0];
+	sreflect[0] = con->s.c->r[1];
+        sreflect[1] = con->s.c->g[1];
+        sreflect[2] = con->s.c->b[1];
+	dreflect[0] = con->s.c->r[2];
+        dreflect[1] = con->s.c->g[2];
+        dreflect[2] = con->s.c->b[2];
+        num_constants++;
+        break;
+      }
+  }
+  if (!num_lights){
+    printf("no lights created");
+    exit(1);
+  }
+  if (!num_constants){
+    printf("no reflective constants set");
+    exit(1);
+  }
+  if (!num_ambient){
+    printf("no ambient light set");
+  }
+  if (num_ambient > 1){
+    printf("multiple ambient light values set");
+  }
+  if (num_constants >1){
+    printf("multiple reflective constants set");
+  }
+  return num_lights;
 }
 
 /*======== struct vary_node ** second_pass() ==========
@@ -93,8 +140,24 @@ void first_pass() {
   vary_node corresponding to the given knob with the
   appropirate value.
   ====================*/
-struct vary_node ** second_pass() {
-  return NULL;
+void second_pass(double lights[255][2][3]) {
+  int i, l;
+  SYMTAB *temp;
+  l = 0;
+  for(i = 0; i < lastop; i++){
+    switch (op[i].opcode){
+    case LIGHT:
+      temp = lookup_symbol(op[i].op.light.name);
+      lights[l][LOCATION][0] = temp->s.l->l[0];
+      lights[l][LOCATION][1] = temp->s.l->l[1];
+      lights[l][LOCATION][2] = temp->s.l->l[2];
+      lights[l][COLOR][0] = temp->s.l->c[0];
+      lights[l][COLOR][1] = temp->s.l->c[1];
+      lights[l][COLOR][2] = temp->s.l->c[2];
+      l++;
+      break;
+    }
+  }
 }
 
 /*======== void print_knobs() ==========
@@ -163,7 +226,6 @@ void my_main() {
 
   //Lighting values here for easy access
   color ambient;
-  double light[2][3];
   double view[3];
   double areflect[3];
   double dreflect[3];
@@ -172,14 +234,6 @@ void my_main() {
   ambient.red = 50;
   ambient.green = 50;
   ambient.blue = 50;
-
-  light[LOCATION][0] = 0.5;
-  light[LOCATION][1] = 0.75;
-  light[LOCATION][2] = 1;
-
-  light[COLOR][RED] = 0;
-  light[COLOR][GREEN] = 255;
-  light[COLOR][BLUE] = 255;
 
   view[0] = 0;
   view[1] = 0;
@@ -201,6 +255,10 @@ void my_main() {
   tmp = new_matrix(4, 1000);
   clear_screen( t );
   clear_zbuffer(zb);
+
+  int num_lights = first_pass(ambient, areflect, sreflect, dreflect);
+  double light[255][2][3];
+  second_pass(light);
 
   for (i=0;i<lastop;i++) {
     //printf("%d: ",i);
@@ -225,7 +283,7 @@ void my_main() {
                    op[i].op.sphere.r, step_3d);
         matrix_mult( peek(systems), tmp );
         draw_polygons(tmp, t, zb, view, light, ambient,
-                      areflect, dreflect, sreflect);
+                      areflect, dreflect, sreflect, num_lights);
         tmp->lastcol = 0;
         break;
       case TORUS:
@@ -248,7 +306,7 @@ void my_main() {
                   op[i].op.torus.r0,op[i].op.torus.r1, step_3d);
         matrix_mult( peek(systems), tmp );
         draw_polygons(tmp, t, zb, view, light, ambient,
-                      areflect, dreflect, sreflect);
+                      areflect, dreflect, sreflect, num_lights);
         tmp->lastcol = 0;
         break;
       case BOX:
@@ -272,7 +330,7 @@ void my_main() {
                 op[i].op.box.d1[2]);
         matrix_mult( peek(systems), tmp );
         draw_polygons(tmp, t, zb, view, light, ambient,
-                      areflect, dreflect, sreflect);
+                      areflect, dreflect, sreflect, num_lights);
         tmp->lastcol = 0;
         break;
       case LINE:

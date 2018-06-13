@@ -562,6 +562,7 @@ LIGHT STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
   op[lastop].op.light.c[2] = $8;
   op[lastop].op.light.c[3] = 0;
   op[lastop].op.light.p = add_symbol($2,SYM_LIGHT,l);
+  op[lastop].op.light.name = $2;
   lastop++;
 }|
 
@@ -590,6 +591,7 @@ CONSTANTS STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
 
   op[lastop].op.constants.p =  add_symbol($2,SYM_CONSTANTS,c);
   op[lastop].opcode=CONSTANTS;
+  op[lastop].op.constants.name = $2;
   lastop++;
 }|
 
@@ -617,6 +619,7 @@ CONSTANTS STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE 
   c->blue = $14;
   op[lastop].op.constants.p =  add_symbol($2,SYM_CONSTANTS,c);
   op[lastop].opcode=CONSTANTS;
+  op[lastop].op.constants.name = $2;
   lastop++;
 }|
 

@@ -21,12 +21,14 @@ struct command
     struct {
       SYMTAB *p;
       double c[4];
+      char* name;
     } light;
     struct {
       double c[4];
     } ambient;
     struct {
       SYMTAB *p;
+      char* name;
       /* each triple holds ka kd and ks for red green and blue
 	 respectively */
     } constants;
@@ -139,9 +141,8 @@ struct vary_node {
 
 void print_knobs();
 void process_knobs();
-void first_pass();
-struct vary_node ** second_pass();
-
+int first_pass();
+void second_pass();
 void print_pcode();
 void my_main();
 #endif

@@ -522,9 +522,9 @@ static const yytype_uint16 yyrline[] =
        0,    41,    41,    42,    47,    49,    62,    76,    90,   107,
      122,   137,   153,   171,   188,   206,   223,   243,   261,   279,
      297,   317,   335,   354,   374,   395,   404,   414,   426,   437,
-     449,   460,   471,   495,   519,   526,   533,   540,   548,   568,
-     596,   623,   632,   647,   670,   680,   687,   695,   706,   714,
-     726,   733,   740,   748,   754,   764
+     449,   460,   471,   495,   519,   526,   533,   540,   548,   569,
+     598,   626,   635,   650,   673,   683,   690,   698,   709,   717,
+     729,   736,   743,   751,   757,   767
 };
 #endif
 
@@ -2034,13 +2034,14 @@ yyreduce:
   op[lastop].op.light.c[2] = (yyvsp[0].val);
   op[lastop].op.light.c[3] = 0;
   op[lastop].op.light.p = add_symbol((yyvsp[-6].string),SYM_LIGHT,l);
+  op[lastop].op.light.name = (yyvsp[-6].string);
   lastop++;
 }
-#line 2040 "y.tab.c" /* yacc.c:1648  */
+#line 2041 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 39:
-#line 569 "mdl.y" /* yacc.c:1648  */
+#line 570 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   c = (struct constants *)malloc(sizeof(struct constants));
@@ -2065,13 +2066,14 @@ yyreduce:
 
   op[lastop].op.constants.p =  add_symbol((yyvsp[-9].string),SYM_CONSTANTS,c);
   op[lastop].opcode=CONSTANTS;
+  op[lastop].op.constants.name = (yyvsp[-9].string);
   lastop++;
 }
-#line 2071 "y.tab.c" /* yacc.c:1648  */
+#line 2073 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 40:
-#line 597 "mdl.y" /* yacc.c:1648  */
+#line 599 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   c = (struct constants *)malloc(sizeof(struct constants));
@@ -2095,13 +2097,14 @@ yyreduce:
   c->blue = (yyvsp[0].val);
   op[lastop].op.constants.p =  add_symbol((yyvsp[-12].string),SYM_CONSTANTS,c);
   op[lastop].opcode=CONSTANTS;
+  op[lastop].op.constants.name = (yyvsp[-12].string);
   lastop++;
 }
-#line 2101 "y.tab.c" /* yacc.c:1648  */
+#line 2104 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 41:
-#line 624 "mdl.y" /* yacc.c:1648  */
+#line 627 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = SAVE_COORDS;
@@ -2109,11 +2112,11 @@ yyreduce:
   op[lastop].op.save_coordinate_system.p = add_symbol((yyvsp[0].string),SYM_MATRIX,m);
   lastop++;
 }
-#line 2113 "y.tab.c" /* yacc.c:1648  */
+#line 2116 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 42:
-#line 633 "mdl.y" /* yacc.c:1648  */
+#line 636 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = CAMERA;
@@ -2127,11 +2130,11 @@ yyreduce:
   op[lastop].op.camera.aim[3] = 0;
   lastop++;
 }
-#line 2131 "y.tab.c" /* yacc.c:1648  */
+#line 2134 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 43:
-#line 648 "mdl.y" /* yacc.c:1648  */
+#line 651 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = TEXTURE;
@@ -2153,11 +2156,11 @@ yyreduce:
   op[lastop].op.texture.p = add_symbol((yyvsp[-12].string),SYM_FILE,0);
   lastop++;
 }
-#line 2157 "y.tab.c" /* yacc.c:1648  */
+#line 2160 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 44:
-#line 671 "mdl.y" /* yacc.c:1648  */
+#line 674 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = SET;
@@ -2166,33 +2169,33 @@ yyreduce:
   op[lastop].op.set.val = (yyvsp[0].val);
   lastop++;
 }
-#line 2170 "y.tab.c" /* yacc.c:1648  */
+#line 2173 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 45:
-#line 681 "mdl.y" /* yacc.c:1648  */
+#line 684 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = BASENAME;
   op[lastop].op.basename.p = add_symbol((yyvsp[0].string),SYM_STRING,0);
   lastop++;
 }
-#line 2181 "y.tab.c" /* yacc.c:1648  */
+#line 2184 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 46:
-#line 688 "mdl.y" /* yacc.c:1648  */
+#line 691 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = SAVE_KNOBS;
   op[lastop].op.save_knobs.p = add_symbol((yyvsp[0].string),SYM_STRING,0);
   lastop++;
 }
-#line 2192 "y.tab.c" /* yacc.c:1648  */
+#line 2195 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 47:
-#line 696 "mdl.y" /* yacc.c:1648  */
+#line 699 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = TWEEN;
@@ -2202,22 +2205,22 @@ yyreduce:
   op[lastop].op.tween.knob_list1 = add_symbol((yyvsp[0].string),SYM_STRING,0);
   lastop++;
 }
-#line 2206 "y.tab.c" /* yacc.c:1648  */
+#line 2209 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 48:
-#line 707 "mdl.y" /* yacc.c:1648  */
+#line 710 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = FRAMES;
   op[lastop].op.frames.num_frames = (yyvsp[0].val);
   lastop++;
 }
-#line 2217 "y.tab.c" /* yacc.c:1648  */
+#line 2220 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 49:
-#line 715 "mdl.y" /* yacc.c:1648  */
+#line 718 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = VARY;
@@ -2228,54 +2231,54 @@ yyreduce:
   op[lastop].op.vary.end_val = (yyvsp[0].val);
   lastop++;
 }
-#line 2232 "y.tab.c" /* yacc.c:1648  */
+#line 2235 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 50:
-#line 727 "mdl.y" /* yacc.c:1648  */
+#line 730 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = SHADING;
   op[lastop].op.shading.p = add_symbol((yyvsp[0].string),SYM_STRING,0);
   lastop++;
 }
-#line 2243 "y.tab.c" /* yacc.c:1648  */
+#line 2246 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 51:
-#line 734 "mdl.y" /* yacc.c:1648  */
+#line 737 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = SETKNOBS;
   op[lastop].op.setknobs.value = (yyvsp[0].val);
   lastop++;
 }
-#line 2254 "y.tab.c" /* yacc.c:1648  */
+#line 2257 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 52:
-#line 741 "mdl.y" /* yacc.c:1648  */
+#line 744 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = FOCAL;
   op[lastop].op.focal.value = (yyvsp[0].val);
   lastop++;
 }
-#line 2265 "y.tab.c" /* yacc.c:1648  */
+#line 2268 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 53:
-#line 749 "mdl.y" /* yacc.c:1648  */
+#line 752 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = WEB;
   lastop++;
 }
-#line 2275 "y.tab.c" /* yacc.c:1648  */
+#line 2278 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 54:
-#line 755 "mdl.y" /* yacc.c:1648  */
+#line 758 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = AMBIENT;
@@ -2284,21 +2287,21 @@ yyreduce:
   op[lastop].op.ambient.c[2] = (yyvsp[0].val);
   lastop++;
 }
-#line 2288 "y.tab.c" /* yacc.c:1648  */
+#line 2291 "y.tab.c" /* yacc.c:1648  */
     break;
 
   case 55:
-#line 765 "mdl.y" /* yacc.c:1648  */
+#line 768 "mdl.y" /* yacc.c:1648  */
     {
   lineno++;
   op[lastop].opcode = GENERATE_RAYFILES;
   lastop++;
 }
-#line 2298 "y.tab.c" /* yacc.c:1648  */
+#line 2301 "y.tab.c" /* yacc.c:1648  */
     break;
 
 
-#line 2302 "y.tab.c" /* yacc.c:1648  */
+#line 2305 "y.tab.c" /* yacc.c:1648  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2526,7 +2529,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 770 "mdl.y" /* yacc.c:1907  */
+#line 773 "mdl.y" /* yacc.c:1907  */
 
 
 

@@ -949,84 +949,84 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 39 "mdl.l"
+#line 40 "mdl.l"
 {return TWEEN;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 40 "mdl.l"
+#line 41 "mdl.l"
 {return FRAMES;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 41 "mdl.l"
+#line 42 "mdl.l"
 {return VARY;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 43 "mdl.l"
+#line 44 "mdl.l"
 {return PUSH;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 44 "mdl.l"
+#line 45 "mdl.l"
 {return POP;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 45 "mdl.l"
+#line 46 "mdl.l"
 {return SAVE;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 46 "mdl.l"
+#line 47 "mdl.l"
 {return GENERATE_RAYFILES;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 48 "mdl.l"
+#line 49 "mdl.l"
 {return SHADING;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 50 "mdl.l"
+#line 51 "mdl.l"
 {
 strcpy(yylval.string, yytext); return SHADING_TYPE;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 53 "mdl.l"
+#line 54 "mdl.l"
 {return SETKNOBS;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 54 "mdl.l"
+#line 55 "mdl.l"
 {return FOCAL;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 55 "mdl.l"
+#line 56 "mdl.l"
 {return DISPLAY;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 56 "mdl.l"
+#line 57 "mdl.l"
 {return WEB;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 58 "mdl.l"
+#line 59 "mdl.l"
 {return CO;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 60 "mdl.l"
+#line 61 "mdl.l"
 {
 strcpy(yylval.string, yytext); return STRING;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 64 "mdl.l"
+#line 65 "mdl.l"
 ECHO;
 	YY_BREAK
 #line 1032 "lex.yy.c"
@@ -2034,6 +2034,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 64 "mdl.l"
+#line 65 "mdl.l"
 
 
