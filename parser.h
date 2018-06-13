@@ -63,6 +63,7 @@ struct command
       SYMTAB *constants;
       double d0[4],d1[4];
       SYMTAB *cs;
+      int pyr;
     } box;
     struct {
       SYMTAB *constants;

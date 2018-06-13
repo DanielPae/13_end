@@ -323,11 +323,21 @@ void my_main() {
           {
             //printf("\tcs: %s",op[i].op.box.cs->name);
           }
-        add_box(tmp,
+	if(!op[i].op.box.pyr){
+            add_box(tmp,
                 op[i].op.box.d0[0],op[i].op.box.d0[1],
                 op[i].op.box.d0[2],
                 op[i].op.box.d1[0],op[i].op.box.d1[1],
                 op[i].op.box.d1[2]);
+	}else {
+            add_pyramid(tmp,
+                op[i].op.box.d0[0],op[i].op.box.\
+d0[1],
+                op[i].op.box.d0[2],
+                op[i].op.box.d1[0],op[i].op.box.\
+d1[1],
+                op[i].op.box.d1[2]);
+	}
         matrix_mult( peek(systems), tmp );
         draw_polygons(tmp, t, zb, view, light, ambient,
                       areflect, dreflect, sreflect, num_lights);

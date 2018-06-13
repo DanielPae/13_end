@@ -16,6 +16,10 @@ void draw_polygons( struct matrix * points, screen s, zbuffer zb,
                     double *areflect, double *dreflect, double *sreflect, int num_lights);
 
 //3d shapes
+void add_pyramid( struct matrix * edges,
+              double x, double y, double z,
+              double width, double height, doubl\
+e depth );
 void add_box( struct matrix * edges,
               double x, double y, double z,
               double width, double height, double depth );

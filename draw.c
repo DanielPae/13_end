@@ -195,6 +195,38 @@ void draw_polygons(struct matrix *polygons, screen s, zbuffer zb,
   }
 }
 
+void add_pyramid( struct matrix * polygons,
+              double x, double y, double z,
+              double width, double height, doubl\
+e depth ) {
+
+  double x1, y1, z1, xt, zt;
+  x1 = x+width;
+  y1 = y+height;
+  z1 = z-depth;
+  xt = x+(width/2);
+  zt = z-(depth/2);
+
+  //bottom
+  add_polygon(polygons, x, y, z, x1, y, z, x, \
+y, z1);
+  add_polygon(polygons, x1, y, z, x1, y, z1, x, y, z1);
+
+  //front
+  add_polygon(polygons, x1, y, z, xt, y1, zt, x,
+y, z);
+
+  //back
+  add_polygon(polygons, x, y, z1, xt, y1, zt, x1, y, z1);
+
+  //left
+  add_polygon(polygons, x, y, z, xt, y1, zt, x
+, y, z1);
+
+  //right
+  add_polygon(polygons, x1, y, z1, xt, y1, zt, x1 ,y, z);
+}
+
 /*======== void add_box() ==========
   Inputs:   struct matrix * edges
   double x

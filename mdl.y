@@ -29,7 +29,7 @@
 %token <val> DOUBLE
 %token <string> LIGHT AMBIENT
 %token <string> CONSTANTS SAVE_COORDS CAMERA
-%token <string> SPHERE TORUS BOX LINE CS MESH TEXTURE
+%token <string> SPHERE TORUS BOX LINE CS MESH TEXTURE PYRAMID
 %token <string> STRING
 %token <string> SET MOVE SCALE ROTATE BASENAME SAVE_KNOBS TWEEN FRAMES VARY
 %token <string> PUSH POP SAVE GENERATE_RAYFILES
@@ -236,6 +236,88 @@ BOX STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE STRING
   op[lastop].op.box.constants = add_symbol($2,SYM_CONSTANTS,c);
   m = (struct matrix *)new_matrix(4,4);
   op[lastop].op.box.cs = add_symbol($9,SYM_MATRIX,m);
+
+  lastop++;
+}|
+
+PYRAMID DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
+{
+  lineno++;
+  op[lastop].opcode = BOX;
+  op[lastop].op.box.d0[0] = $2;
+  op[lastop].op.box.d0[1] = $3;
+  op[lastop].op.box.d0[2] = $4;
+  op[lastop].op.box.d0[3] = 0;
+  op[lastop].op.box.d1[0] = $5;
+  op[lastop].op.box.d1[1] = $6;
+  op[lastop].op.box.d1[2] = $7;
+  op[lastop].op.box.d1[3] = 0;
+  op[lastop].op.box.pyr = 1;
+
+  op[lastop].op.box.constants = NULL;
+  op[lastop].op.box.cs = NULL;
+  lastop++;
+}|
+PYRAMID DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE STRING
+{
+  lineno++;
+  op[lastop].opcode = BOX;
+  op[lastop].op.box.d0[0] = $2;
+  op[lastop].op.box.d0[1] = $3;
+  op[lastop].op.box.d0[2] = $4;
+  op[lastop].op.box.d0[3] = 0;
+  op[lastop].op.box.d1[0] = $5;
+  op[lastop].op.box.d1[1] = $6;
+  op[lastop].op.box.d1[2] = $7;
+  op[lastop].op.box.d1[3] = 0;
+  op[lastop].op.box.pyr = 1;
+
+  op[lastop].op.box.constants = NULL;
+  m = (struct matrix *)new_matrix(4,4);
+  op[lastop].op.box.cs = add_symbol($8,SYM_MATRI\
+X,m);
+  lastop++;
+}|
+PYRAMID STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE
+{
+  lineno++;
+  op[lastop].opcode = BOX;
+  op[lastop].op.box.d0[0] = $3;
+  op[lastop].op.box.d0[1] = $4;
+  op[lastop].op.box.d0[2] = $5;
+  op[lastop].op.box.d0[3] = 0;
+  op[lastop].op.box.d1[0] = $6;
+  op[lastop].op.box.d1[1] = $7;
+  op[lastop].op.box.d1[2] = $8;
+  op[lastop].op.box.d1[3] = 0;
+  op[lastop].op.box.pyr = 1;
+  c = (struct constants *)malloc(sizeof(struct c\
+onstants));
+  op[lastop].op.box.constants = add_symbol($2,SY\
+M_CONSTANTS,c);
+  op[lastop].op.box.cs = NULL;
+  lastop++;
+}|
+PYRAMID STRING DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE STRING
+{
+  lineno++;
+  op[lastop].opcode = BOX;
+  op[lastop].op.box.d0[0] = $3;
+  op[lastop].op.box.d0[1] = $4;
+  op[lastop].op.box.d0[2] = $5;
+  op[lastop].op.box.d0[3] = 0;
+  op[lastop].op.box.d1[0] = $6;
+  op[lastop].op.box.d1[1] = $7;
+  op[lastop].op.box.d1[2] = $8;
+  op[lastop].op.box.d1[3] = 0;
+  op[lastop].op.box.pyr = 1;
+  c = (struct constants *)malloc(sizeof(struct c\
+onstants));
+  op[lastop].op.box.constants = add_symbol($2,SY\
+M_CONSTANTS,c);
+  m = (struct matrix *)new_matrix(4,4);
+  op[lastop].op.box.cs = add_symbol($9,SYM_MATRI\
+X,m);
 
   lastop++;
 }|
