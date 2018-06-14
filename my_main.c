@@ -107,7 +107,6 @@ int first_pass(color ambient, double areflect[3], double sreflect[3], double dre
   }
   if (!num_constants){
     printf("no reflective constants set");
-    exit(1);
   }
   if (!num_ambient){
     printf("no ambient light set");
@@ -210,7 +209,6 @@ void print_knobs() {
   0487
   ====================*/
 void my_main() {
-
   int i;
   struct matrix *tmp;
   struct stack *systems;

@@ -33,18 +33,6 @@ move 20 -100 0
 box -10 0 10 20 125 20
 pop
 pop
-//LEFT LEG
-push
-move -100 -125 0
-rotate z -45
-rotate y 20
-box 0 0 40 50 120 80
-pop
-//RIGHT LEG
-push
-move 100 -125 0
-rotate z 45
-rotate y 20
-box -50 0 40 50 120 80
+//LE
 display
 save robot.png
