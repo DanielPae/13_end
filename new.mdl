@@ -1,3 +1,6 @@
-
-constants yeah 1 1 1 1 1 1 1 1 1
-box 1 1 1 1 1 1 
+constants yeah .7 .7 .7 .2 .2 .2 .5 .5 .5
+push
+rotate x 45
+pyramid 100 100 100 70 70 70
+light 1 1 1 
+ambient 50 50 50
